@@ -1,0 +1,139 @@
+{
+   "name":"Riesgo card\u00edaco postoperatorio",
+   "fields":[
+      {
+         "name":"Tercer ruido card\u00edaco o distenci\u00f3n venosa yugular",
+         "type":"segmentedControl",
+         "options":[
+            "No",
+            "S\u00ed"
+         ]
+      },
+      {
+         "name":"Infarto agudo de miocardio en los \u00faltimos 6 meses",
+         "type":"segmentedControl",
+         "options":[
+            "No",
+            "S\u00ed"
+         ]
+      },
+      {
+         "name":"Ritmo no sinusal o contracci\u00f3n atrial prematura en ECG",
+         "type":"segmentedControl",
+         "options":[
+            "No",
+            "S\u00ed"
+         ]
+      },
+      {
+         "name":"M\u00e1s de 5 contracciones ventriculares prematuras",
+         "type":"segmentedControl",
+         "options":[
+            "No",
+            "S\u00ed"
+         ]
+      },
+      {
+         "name":"Edad mayor a 70 a\u00f1os",
+         "type":"segmentedControl",
+         "options":[
+            "No",
+            "S\u00ed"
+         ]
+      },
+      {
+         "name":"Operaciones de emergencia",
+         "type":"segmentedControl",
+         "options":[
+            "No",
+            "S\u00ed"
+         ]
+      },
+      {
+         "name":"Mala condici\u00f3n m\u00e9dica general",
+         "type":"segmentedControl",
+         "options":[
+            "No",
+            "S\u00ed"
+         ]
+      },
+      {
+         "name":"Cirug\u00eda intrator\u00e1cica, intraperitoneal o a\u00f3rtica",
+         "type":"segmentedControl",
+         "options":[
+            "No",
+            "S\u00ed"
+         ]
+      },
+      {
+         "name":"Estenosis valvular a\u00f3rtica importante",
+         "type":"segmentedControl",
+         "options":[
+            "No",
+            "S\u00ed"
+         ]
+      }
+   ],
+   "formulaType":"pointsBased",
+   "points":[
+      {
+         "variable":"a",
+         "points":"11"
+      },
+      {
+         "variable":"b",
+         "points":"10"
+      },
+      {
+         "variable":"c",
+         "points":"7"
+      },
+      {
+         "variable":"d",
+         "points":"7"
+      },
+      {
+         "variable":"e",
+         "points":"5"
+      },
+      {
+         "variable":"f",
+         "points":"4"
+      },
+      {
+         "variable":"g",
+         "points":"3"
+      },
+      {
+         "variable":"h",
+         "points":"3"
+      },
+      {
+         "variable":"i",
+         "points":"3"
+      }
+   ],
+   "results":[
+      {
+         "minValue":"0",
+         "maxValue":"5",
+         "result":"1"
+      },
+      {
+         "minValue":"6",
+         "maxValue":"12",
+         "result":"7"
+      },
+      {
+         "minValue":"13",
+         "maxValue":"15",
+         "result":"14"
+      },
+      {
+         "minValue":"26",
+         "maxValue":"1000",
+         "result":"78"
+      }
+   ],
+   "references":"1.      Halub M, Sidwell R. Cardiac Risk Stratification and Protection. Surg Clin N Am 95 (2015) 217\u2013235.\n\n2.      Kraus, J, et al. Consenso de evaluaci\u00f3n del riesgo cardiovascular en cirug\u00eda no card\u00edaca. Rev Arg Cardiol. 2005;73(5):381-396."
+}

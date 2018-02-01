@@ -1,0 +1,56 @@
+{
+   "name":"Índice de masa corporal",
+   "fields":[
+      {
+         "name":"Estatura",
+         "type":"textField",
+         "placeholder":"cm"
+      },
+      {
+         "name":"Peso",
+         "type":"textField",
+         "placeholder":"kg"
+      }
+   ],
+   "formulaType":"reversePolish",
+   "formula":"b 2 a 100.0 \/ ^ \/",
+   "resultImages":[
+      {
+         "minValue":"-1",
+         "maxValue":"18.4",
+         "image":"thin",
+         "category":"bajo peso"
+      },
+      {
+         "minValue":"18.5",
+         "maxValue":"24.9",
+         "image":"normal",
+         "category":"peso normal"
+      },
+      {
+         "minValue":"25",
+         "maxValue":"29.9",
+         "image":"overweight",
+         "category":"sobrepeso"
+      },
+      {
+         "minValue":"30",
+         "maxValue":"34.9",
+         "image":"obese",
+         "category":"obesidad grado I"
+      },
+      {
+         "minValue":"35",
+         "maxValue":"39.9",
+         "image":"obese",
+         "category":"obesidad grado II"
+      },
+      {
+         "minValue":"40",
+         "maxValue":"-1",
+         "image":"obese",
+         "category":"obesidad grado III"
+      }
+   ],
+   "references":"1.      Pi-Sunyer F, et al. Clinical Guidelines on the Identification, Evaluation, and Treatment of Overweight and Obesity in Adults. [en l\u00ednea] Disponible en: http:\/\/www.nhlbi.nih.gov\/files\/docs\/guidelines\/obesity_guidelines_archive.pdf\n2.      AHA\/ACC\/TOS Prevention Guideline:\n\n2013 AHA\/ACC\/TOS Guideline for the Management of Overweight and Obesity in Adults: A Report of the American College of Cardiology\/American Heart Association Task Force on Practice Guidelines and The Obesity Society\nMichael D. Jensen, Donna H. Ryan, Caroline M. Apovian, Jamy D. Ard, Anthony G. Comuzzie, Karen A. Donato, Frank B. Hu, Van S. Hubbard, John M. Jakicic, Robert F. Kushner, Catherine M. Loria, Barbara E. Millen, Cathy A. Nonas, F. Xavier Pi-Sunyer, June Stevens, Victor J. Stevens, Thomas A. Wadden, Bruce M. Wolfe, and Susan Z. Yanovski\nCirculation. 2013;01.cir.0000437739.71477.eepublished online before print November 12 2013, doi:10.1161\/01.cir.0000437739.71477.ee"
+}

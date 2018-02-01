@@ -1,0 +1,111 @@
+{
+   "name":"S\u00edndrome metab\u00f3lico",
+   "fields":[
+      {
+         "name":"Sexo",
+         "type":"segmentedControl",
+         "initialValue":"0",
+         "options":[
+            "Masculino",
+            "Femenino"
+         ]
+      },
+      {
+         "name":"Circunferencia de cintura",
+         "type":"slider",
+         "minValue":"30",
+         "maxValue":"180",
+         "placeholder":"cm"
+      },
+      {
+         "condition":"b",
+         "conditionValue":"1",
+         "name":"Nivel de triglic\u00e9ridos",
+         "type":"textField",
+         "placeholder":"mg\/dL"
+      },
+      {
+         "condition":"b",
+         "conditionValue":"1",
+         "name":"Colesterol HDL",
+         "type":"textField",
+         "placeholder":"mg\/dL"
+      },
+      {
+         "condition":"b",
+         "conditionValue":"1",
+         "initialValue":"0",
+         "name":"Tratamiento actual para hipertensi\u00f3n arterial",
+         "type":"segmentedControl",
+         "options":[
+            "No",
+            "S\u00ed"
+         ]
+      },
+      {
+         "condition":"e",
+         "conditionValue":"0",
+         "name":"Presi\u00f3n arterial sist\u00f3lica",
+         "type":"textField",
+         "placeholder":"mmHg"
+      },
+      {
+         "condition":"e",
+         "conditionValue":"0",
+         "name":"Presi\u00f3n arterial diast\u00f3lica",
+         "type":"textField",
+         "placeholder":"mmHg"
+      },
+      {
+         "condition":"b",
+         "conditionValue":"1",
+         "name":"Glucosa en ayunas",
+         "type":"textField",
+         "placeholder":"mg\/dL"
+      }
+   ],
+   "formulaType":"boolean",
+   "criteria":{
+      "b":{
+         "groupVariable":"a",
+         "groups":[
+            "89",
+            "79"
+         ],
+         "logic":"greaterThan"
+      },
+      "c":{
+         "value":"149",
+         "logic":"greaterThan"
+      },
+      "d":{
+         "groupVariable":"a",
+         "groups":[
+            "40",
+            "50"
+         ],
+         "logic":"lessThan"
+      },
+      "e":{
+         "variable":"e",
+         "value":"1",
+         "logic":"equals"
+      },
+      "f":{
+         "variable":"f",
+         "value":"129",
+         "logic":"greaterThan"
+      },
+      "g":{
+         "variable":"g",
+         "value":"84",
+         "logic":"greaterThan"
+      },
+      "h":{
+         "value":"99",
+         "logic":"greaterThan"
+      }
+   },
+   "minimumCriteria":"3",
+   "references":"1.      Joint Scientific Statement:\n\nHarmonizing the Metabolic Syndrome: A Joint Interim Statement of the International Diabetes Federation Task Force on Epidemiology and Prevention; National Heart, Lung, and Blood Institute; American Heart Association; World Heart Federation; International Atherosclerosis Society; and International Association for the Study of Obesity\nK.G.M.M. Alberti, Robert H. Eckel, Scott M. Grundy, Paul Z. Zimmet, James I. Cleeman, Karen A. Donato, Jean-Charles Fruchart, W. Philip T. James, Catherine M. Loria, and Sidney C. Smith, Jr. Circulation. 2009; 120:1640-1645, published online before print October 5 2009, doi:10.1161\/CIRCULATIONAHA.109.192644"
+}

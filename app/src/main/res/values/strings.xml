@@ -1,0 +1,23 @@
+<resources>
+    <string name="app_name">CRC Asofarma</string>
+    <string name="password">Asofarma</string>
+
+    <string name="clave">Clave de acceso</string>
+    <string name="iniciar">Iniciar</string>
+    <string name="fondo">Fondo</string>
+
+    <string name="login">Iniciar</string>
+    <string name="products">Productos</string>
+    <string name="menu">Menú</string>
+
+    <string name="calcular">Calcular</string>
+    
+    <string name="comentarios">Comentarios</string>
+    <string name="referencias">Referencias</string>
+    <string name="informacion">Información</string>
+
+    <string name="framingham_result_title">Riesgo según edad y sexo</string>
+    <string name="rec_result_title">Riesgo de enfermedad coronaria</string>
+    <string name="metabolic_result_title">¿El paciente padece síndrome metabólico?</string>
+    <string name="imc_result_title">Riesgo según edad y sexo</string>
+</resources>

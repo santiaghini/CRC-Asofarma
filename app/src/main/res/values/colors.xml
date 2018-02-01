@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+
+    <color name="primary">#3f51b5</color>
+    <color name="filtro_inicio">#b8ffffff</color>
+    <color name="button_login">#3b6be7</color>
+    <color name="button_login_pressed">#003fe2</color>
+
+    <color name="filtro_menu">#b88b8b8b</color>
+
+    <color name="white">#ffffff</color>
+    <color name="background">#ececec</color>
+    <color name="green">#25c413</color>
+
+    <color name="asofarmaRed">#b74848</color>
+</resources>
