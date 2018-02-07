@@ -44,6 +44,7 @@
         android:layout_marginTop="16dp"
         android:text="What is up my friend locochon"
         android:textSize="16sp"
+        android:textColor="@color/font_color"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/guideline"

@@ -42,6 +42,8 @@ public class MenuActivity extends AppCompatActivity {
         setTitle("Menú");
 
         Toolbar myToolbar = (Toolbar) findViewById(R.id.menu_toolbar);
+        myToolbar.setBackgroundColor(getResources().getColor(R.color.asofarmaRed));
+        myToolbar.setTitleTextColor(getResources().getColor(R.color.white));
         setSupportActionBar(myToolbar);
 
     }

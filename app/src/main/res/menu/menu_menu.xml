@@ -2,10 +2,11 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <item android:id="@+id/toolbar_products"
-        android:visible="true"
+    <item
+        android:id="@+id/toolbar_products"
+        android:iconTint="@color/white"
         android:title="@string/products"
-        app:showAsAction="always">
-    </item>
+        android:visible="true"
+        app:showAsAction="always"></item>
 
 </menu>

@@ -55,6 +55,8 @@ public class ResultsActivity extends AppCompatActivity {
 
         Toolbar myChildToolbar =
                 (Toolbar) findViewById(R.id.results_toolbar);
+        myChildToolbar.setBackgroundColor(getResources().getColor(R.color.asofarmaRed));
+        myChildToolbar.setTitleTextColor(getResources().getColor(R.color.white));
         setSupportActionBar(myChildToolbar);
 
         // Get a support ActionBar corresponding to this toolbar

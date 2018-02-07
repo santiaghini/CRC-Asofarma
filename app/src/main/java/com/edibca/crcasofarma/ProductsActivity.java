@@ -26,6 +26,8 @@ public class ProductsActivity extends AppCompatActivity {
         // my_child_toolbar is defined in the layout file
         Toolbar myChildToolbar =
                 (Toolbar) findViewById(R.id.products_toolbar);
+        myChildToolbar.setBackgroundColor(getResources().getColor(R.color.asofarmaRed));
+        myChildToolbar.setTitleTextColor(getResources().getColor(R.color.white));
         setSupportActionBar(myChildToolbar);
 
         // Get a support ActionBar corresponding to this toolbar

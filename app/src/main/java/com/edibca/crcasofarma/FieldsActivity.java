@@ -91,8 +91,9 @@ public class FieldsActivity extends AppCompatActivity {
         }
 
         // my_child_toolbar is defined in the layout file
-        Toolbar myChildToolbar =
-                (Toolbar) findViewById(R.id.fields_toolbar);
+        Toolbar myChildToolbar = (Toolbar) findViewById(R.id.fields_toolbar);
+        myChildToolbar.setBackgroundColor(getResources().getColor(R.color.asofarmaRed));
+        myChildToolbar.setTitleTextColor(getResources().getColor(R.color.white));
         setSupportActionBar(myChildToolbar);
 
         // Get a support ActionBar corresponding to this toolbar
@@ -301,19 +302,21 @@ public class FieldsActivity extends AppCompatActivity {
         mapping.put("segmentedControl", 1);
         mapping.put("slider", 2);
 
-        // Array For Metabolic Slider
-        listDataMinus = new ArrayList<JSONObject>();
-        listDataMinus.addAll(listdata);
-        int size = listDataMinus.size();
-        for (int i = 2; i < size; i++){
-            listDataMinus.remove(2);
-        }
+        if (position == METABOLIC_POS){
+            // Array For Metabolic Slider
+            listDataMinus = new ArrayList<JSONObject>();
+            listDataMinus.addAll(listdata);
+            int size = listDataMinus.size();
+            for (int i = 2; i < size; i++){
+                listDataMinus.remove(2);
+            }
 
-        // Array For Metabolic treatment
-        listDataMetabolicTreatment = new ArrayList<JSONObject>();
-        listDataMetabolicTreatment.addAll(listdata);
-        listDataMetabolicTreatment.remove(5);
-        listDataMetabolicTreatment.remove(5);
+            // Array For Metabolic treatment
+            listDataMetabolicTreatment = new ArrayList<JSONObject>();
+            listDataMetabolicTreatment.addAll(listdata);
+            listDataMetabolicTreatment.remove(5);
+            listDataMetabolicTreatment.remove(5);
+        }
 
         // ListViewItems initialize
         ArrayList<ListViewItem> items = new ArrayList<ListViewItem>();
