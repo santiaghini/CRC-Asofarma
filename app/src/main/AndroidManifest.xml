@@ -11,7 +11,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar"
         tools:replace="android:theme">
-        <activity android:name=".MainActivity"/>
+        <activity
+            android:name=".MainActivity"/>
         <activity android:name=".LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -21,6 +22,7 @@
         </activity>
         <activity android:name=".MenuActivity" />
         <activity android:name=".FieldsActivity"
+            android:windowSoftInputMode="adjustPan"
             android:parentActivityName=".MenuActivity"/>
         <activity android:name=".ResultsActivity"
             android:parentActivityName=".FieldsActivity"/>

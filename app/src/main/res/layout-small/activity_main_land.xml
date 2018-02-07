@@ -14,5 +14,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/cover_medium" />
+        app:srcCompat="@drawable/cover_land_small" />
 </android.support.constraint.ConstraintLayout>

@@ -9,11 +9,14 @@
     <color name="button_login">#3b6be7</color>
     <color name="button_login_pressed">#003fe2</color>
 
-    <color name="filtro_menu">#b88b8b8b</color>
+    <color name="filtro_menu">#bdd6d6d6</color>
+    <color name="trans">#00ffffff</color>
 
     <color name="white">#ffffff</color>
     <color name="background">#ececec</color>
     <color name="green">#25c413</color>
 
-    <color name="asofarmaRed">#b74848</color>
+    <color name="asofarmaRed">#a64040</color>
+
+    <color name="wheel_gray">#b3b3b3</color>
 </resources>

@@ -3,6 +3,7 @@ package com.edibca.crcasofarma;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -31,6 +32,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -40,6 +42,7 @@ import com.edibca.crcasofarma.Clases.IMC;
 import com.edibca.crcasofarma.Clases.RiesgoEC;
 import com.edibca.crcasofarma.Clases.RiesgoPostOperatorio;
 import com.edibca.crcasofarma.Clases.SindromeMetabolico;
+import com.google.common.collect.Lists;
 
 public class FieldsActivity extends AppCompatActivity {
     public static final int FRAMINGHAM_POS = 0;
@@ -53,6 +56,8 @@ public class FieldsActivity extends AppCompatActivity {
     Map<Integer,Double> valuesMap;
     ArrayList<JSONObject> listdata;
     ArrayList<JSONObject> listDataMinus;
+    ArrayList<JSONObject> listDataMetabolicTreatment;
+    Map<String,Integer> titleMap;
 
     Integer seekBarProgress = 0;
 
@@ -63,14 +68,17 @@ public class FieldsActivity extends AppCompatActivity {
     double[] rpo;
 
     Boolean hideItems = false;
+    Boolean metabolicTreatment = false;
+
+    Integer globalPosition;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fields);
 
-        Intent intent = getIntent();
-        final Integer position = intent.getIntExtra("position", 0);
+        SharedPreferences prefs = getSharedPreferences("CRC", MODE_PRIVATE);
+        final Integer position = prefs.getInt("position", 0);
 
         data =  getData(position);
 
@@ -105,19 +113,18 @@ public class FieldsActivity extends AppCompatActivity {
         calcText.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
 
-                for (int i = 0; i < valuesMap.keySet().size(); i++){
-                    boolean noData = false;
-                    if (valuesMap.get(i) == null){
-                        noData = true;
-                        Toast.makeText(getApplicationContext(), "Por favor rellena todos los campos", Toast.LENGTH_SHORT).show();
-                    }
-                    break;
-                }
+                Log.e("CLICKED", "CALCULATE");
+
+                if (valuesMap.keySet().size() != listdata.size() && position != METABOLIC_POS) {
+                    Toast.makeText(getApplicationContext(), "Por favor rellena todos los campos", Toast.LENGTH_SHORT).show();
+                    Log.e("ERROR IN DATA", "NO COMPLETE DATA");
+                } else {
 
                 Intent intent = new Intent(FieldsActivity.this, ResultsActivity.class);
                 intent.putExtra("position", position);
                 try {
                     intent.putExtra("references", data.getString("references"));
+                    Log.d("References", data.getString("references"));
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -136,10 +143,18 @@ public class FieldsActivity extends AppCompatActivity {
 
                         Framingham framinghamObj = new Framingham(genero, edad, presionSistolica, tratamiento, fumador, diabetico, colesterolHDL, colesterolTot);
                         framingham = framinghamObj.calculaFramingham();
-                        for (int i = 0; i < framingham.length; i++){
+                        for (int i = 0; i < framingham.length; i++) {
                             Log.d("FRAMINGHAM " + i, String.valueOf(framingham[i]));
                         }
-                        intent.putExtra("result",framingham);
+                        intent.putExtra("result", framingham);
+                        int heartAge = 0;
+                        try {
+                            heartAge = framinghamObj.getHeartAge( framingham[1], genero, new JSONObject(loadJSONFromAsset("heart_age")));
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                        Log.d("HEART AGE", String.valueOf(heartAge));
+                        intent.putExtra("heartAge", heartAge);
                         startActivity(intent);
                         break;
                     case REC_POS:
@@ -161,13 +176,22 @@ public class FieldsActivity extends AppCompatActivity {
                         //SINDROME METABOLICO
                         genero = valuesMap.get(0);
                         Double circunferencia = valuesMap.get(1);
-                        if (circunferencia >= 90){
+                        if (circunferencia != null && circunferencia >= 90) {
                             Double trigliceridos = valuesMap.get(2);
                             colesterolHDL = valuesMap.get(3);
                             tratamiento = valuesMap.get(4);
-                            presionSistolica = valuesMap.get(5);
-                            Double presionDiastolica = valuesMap.get(6);
-                            Double glucosa = valuesMap.get(7);
+                            Double presionDiastolica;
+                            Double glucosa;
+                            if (tratamiento == 0.0){
+                                presionSistolica = valuesMap.get(5);
+                                presionDiastolica = valuesMap.get(6);
+                                glucosa = valuesMap.get(7);
+                            } else {
+                                presionSistolica = 0.0;
+                                presionDiastolica = 0.0;
+                                glucosa = valuesMap.get(5);
+                            }
+
                             SindromeMetabolico sindromeMetabolicoObj = new SindromeMetabolico(genero, circunferencia, trigliceridos, colesterolHDL, presionSistolica, presionDiastolica, tratamiento, glucosa);
                             sindromeM = sindromeMetabolicoObj.calcular();
                         } else {
@@ -181,7 +205,7 @@ public class FieldsActivity extends AppCompatActivity {
                     case IMC_POS:
                         // IMC
                         IMC imcObj = new IMC(valuesMap.get(0), valuesMap.get(1));
-                        imc = imcObj.calcularIMC()*10000;
+                        imc = imcObj.calcularIMC() * 10000;
                         Log.d("IMC: ", imc.toString());
                         intent.putExtra("result", imc);
                         startActivity(intent);
@@ -202,7 +226,7 @@ public class FieldsActivity extends AppCompatActivity {
                         map.put(1.0, true);
                         RiesgoPostOperatorio rpoObj = new RiesgoPostOperatorio(map.get(edadMayor), map.get(infarto), map.get(ruido), map.get(estenosis), map.get(ritmoNo), map.get(contracciones), map.get(malaCondicion), map.get(cirugia), map.get(operaciones));
                         rpo = rpoObj.calcularRiesgo();
-                        for (int i = 0; i < rpo.length; i++){
+                        for (int i = 0; i < rpo.length; i++) {
                             Log.d("RPO " + i, String.valueOf(rpo[i]));
                         }
                         intent.putExtra("result", rpo);
@@ -210,6 +234,7 @@ public class FieldsActivity extends AppCompatActivity {
                         break;
 
                 }
+            }
             }
         });
 
@@ -281,10 +306,14 @@ public class FieldsActivity extends AppCompatActivity {
         listDataMinus.addAll(listdata);
         int size = listDataMinus.size();
         for (int i = 2; i < size; i++){
-            Log.d("object",listDataMinus.get(2).toString());
             listDataMinus.remove(2);
-            Log.d("REMOVED", "LIST ITEM");
         }
+
+        // Array For Metabolic treatment
+        listDataMetabolicTreatment = new ArrayList<JSONObject>();
+        listDataMetabolicTreatment.addAll(listdata);
+        listDataMetabolicTreatment.remove(5);
+        listDataMetabolicTreatment.remove(5);
 
         // ListViewItems initialize
         ArrayList<ListViewItem> items = new ArrayList<ListViewItem>();
@@ -296,6 +325,8 @@ public class FieldsActivity extends AppCompatActivity {
             ListViewItem item = new ListViewItem(name, type);
             items.add(item);
         }
+
+        globalPosition = position;
 
         ContenidoAdapter contenidoAdapter;
 
@@ -309,6 +340,16 @@ public class FieldsActivity extends AppCompatActivity {
         listView.setAdapter(contenidoAdapter);
 
         valuesMap = new HashMap<Integer, Double>();
+
+        titleMap = new HashMap<String, Integer>();
+
+        for (int i = 0; i < listdata.size(); i++){
+            if (listdata.get(i).getString("type").equals("textField")){
+                titleMap.put(listdata.get(i).getString("name"), i);
+                Log.d("Title", listdata.get(i).getString("name"));
+                Log.d("Position", String.valueOf(i));
+            }
+        }
 
     }
 
@@ -342,6 +383,8 @@ public class FieldsActivity extends AppCompatActivity {
 
         @Override
         public View getView(final int position, View convertView, ViewGroup parent) {
+
+            Log.d("Get Item", getItem(position).toString());
 
             ViewHolder holder = null;
             ListViewItem listViewItem = items.get(position);
@@ -380,21 +423,54 @@ public class FieldsActivity extends AppCompatActivity {
 
             JSONObject field = data.get(position);
             titleView = holder.title;
+            holder.position = position;
             final String title;
             try {
                 title = field.getString("name");
                 titleView.setText(title);
 
                 if (listViewItemType == TYPE_INPUT) {
+
                     EditText input = holder.editText;
 
                     if (valuesMap.get(position) == null){
+                        input.setText("");
+                        String hint = field.getString("placeholder");
+                        input.setHint(hint);
+                    } else {
+                        input.setText(valuesMap.get(position).toString());
+                    }
+
+                    final ViewHolder finalHolder = holder;
+
+                    input.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+                        @Override
+                        public void onFocusChange(View view, boolean hasFocus) {
+                            if (!hasFocus) {
+                                if (!finalHolder.editText.getText().toString().equals("")) {
+                                    String textString = finalHolder.editText.getText().toString();
+                                    valuesMap.put(position, Double.valueOf(textString));
+                                    Log.d("Writing", textString + " in position " + position + " with title " + title);
+                                }else {
+
+                                }
+                            }
+
+                        }
+                    });
+
+                    /*
+
+                    if (valuesMap.get(position) == null){
                         input.getText().clear();
-                        Log.d("Value in map", "null");
+                        Log.d("Value in map", "with position " + String.valueOf(position) + " null");
                         String hint = field.getString("placeholder");
                         input.setHint(hint);
                     } else{
-                        input.setText(valuesMap.get(position).toString());
+
+                        if (titleMap.get(title) == position){
+                            input.setText(valuesMap.get(position).toString());
+                        }
                     }
 
                     input.setTag(position);
@@ -416,16 +492,20 @@ public class FieldsActivity extends AppCompatActivity {
                                                       int before, int count) {
                                 if (s != null && s != ""){
                                     int pos = (Integer) finalHolder.editText.getTag();
-                                    Log.d(title + " position : " + pos, s.toString());
+                                    Log.d(title + " position " + pos, s.toString());
 
                                     String textString = s.toString();
 
-                                    if (!textString.isEmpty() && textString != null) {
+                                    Log.d("Position in map",  titleMap.get(title).toString());
+
+                                    if ((!textString.isEmpty() && textString != null) && titleMap.get(title) == pos) {
                                         valuesMap.put(pos, Double.valueOf(textString));
+                                        Log.d("Writing", textString + " in position " + pos + " with title " + title);
                                     }
                                 }
                             }
                         });
+                        */
 
                 } else if (listViewItemType == TYPE_CHOICE){
                     final Button button0 = (Button) holder.button0;
@@ -458,6 +538,12 @@ public class FieldsActivity extends AppCompatActivity {
                         public void onClick(View v) {
                             switchButtons(button0, button1);
                             valuesMap.put(position, Double.valueOf(button0.getTag().toString()));
+
+                            if (globalPosition == METABOLIC_POS && position == 4){
+                                ContenidoAdapter contenidoAdapter = new ContenidoAdapter(getApplicationContext(), R.layout.fields_numbercell, listdata, items);
+                                listView.setAdapter(contenidoAdapter);
+                                metabolicTreatment = false;
+                            }
                         }
                     });
 
@@ -466,6 +552,12 @@ public class FieldsActivity extends AppCompatActivity {
                         public void onClick(View v) {
                             switchButtons(button1, button0);
                             valuesMap.put(position, Double.valueOf(button1.getTag().toString()));
+
+                            if (globalPosition == METABOLIC_POS && position == 4){
+                                ContenidoAdapter contenidoAdapter = new ContenidoAdapter(getApplicationContext(), R.layout.fields_numbercell, listDataMetabolicTreatment, items);
+                                listView.setAdapter(contenidoAdapter);
+                                metabolicTreatment = true;
+                            }
                         }
                     });
 
@@ -566,6 +658,7 @@ public class FieldsActivity extends AppCompatActivity {
         Button button1;
         SeekBar slider;
         TextView label;
+        int position;
     }
 
 }

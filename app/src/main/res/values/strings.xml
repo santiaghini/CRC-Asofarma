@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">CRC Asofarma</string>
-    <string name="password">Asofarma</string>
+    <string name="password">rovartalnf</string>
 
     <string name="clave">Clave de acceso</string>
     <string name="iniciar">Iniciar</string>
@@ -20,4 +20,7 @@
     <string name="rec_result_title">Riesgo de enfermedad coronaria</string>
     <string name="metabolic_result_title">¿El paciente padece síndrome metabólico?</string>
     <string name="imc_result_title">Riesgo según edad y sexo</string>
+
+    <string name="metabolic_info">El Síndrome Metabólico incrementa 2 veces el riesgo de enfermedad cardiovascular durante los próximos 5 a 10 años y aumenta 5 veces el riesgo de diabetes mellitus tipo 2.</string>
+    <string name="postoperatory_info">El puntaje de riesgo de Goldman establece la probabilidad de complicaciones cardiacas (%) en pacientes llevados a cirugía no cardiaca, en relación a la presencia o no de factores de riesgo específicos. Clasisfica a los pacientes en cuatro clases (I a IV). el incremento en la clase del paciente se relaciona con el incremento en la probabilidad de compliaciones (complicaciones cardíacas, complicaciones graves y muerte cardiaca). Clase I (riesgo bajo): puntaje de 0 a 5; clase II (riesgo moderado): puntaje 6-12; clase III (riesgo alto): puntaje 13-25; clase IV (riesgo muy alto): puntaje => 26.</string>
 </resources>

@@ -6,6 +6,15 @@ import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.Switch;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.Iterator;
+import java.util.List;
+import com.google.common.collect.Lists;
+
 /**
  * Created by Edibca on 09/11/2015.
  */
@@ -132,10 +141,72 @@ public class Framingham {
         Log.i("Riesgo óptimo: ", String.valueOf(dRiesgoOptimo));
         Log.i("Riesgo normal: ", String.valueOf(dRiesgoNormal));*/
 
-        dRiesgos[0] = Math.round(dRiesgo * 10000.0) / 100.0;
-        dRiesgos[1] = Math.round(dRiesgoOptimo * 10000.0) / 100.0;
-        dRiesgos[2] = Math.round(dRiesgoNormal * 10000.0) / 100.0;
+        dRiesgos[1] = Math.round(dRiesgo * 10000.0) / 100.0;
+        dRiesgos[2] = Math.round(dRiesgoOptimo * 10000.0) / 100.0;
+        dRiesgos[0] = Math.round(dRiesgoNormal * 10000.0) / 100.0;
 
         return dRiesgos;
     }
+
+
+
+    public int getHeartAge(double risk, double genero, JSONObject jsonObject) throws JSONException {
+        int heartAge = 0;
+        int points = 0;
+
+        // HOMBRES
+        if (genero == 0.0){
+            if (risk < 1){
+                points = -3;
+            } else if(risk > 30){
+                points = 18;
+            } else {
+                JSONObject riskToPointsMen = jsonObject.getJSONObject("riskToPoints").getJSONObject("men");
+                Iterator keys = riskToPointsMen.keys();
+                List<String> keysArray = Lists.newArrayList(keys);
+                boolean winner = false;
+                for (int i = 1; i < keysArray.size(); i++){
+                    if (risk < Double.valueOf(keysArray.get(i)) && !winner){
+                        points = riskToPointsMen.getInt(keysArray.get(i-1));
+                        winner = true;
+                    }
+                }
+            }
+            if (points < 0){
+                heartAge = 28;
+            } else if (points >= 17){
+                heartAge = 80;
+            } else {
+                heartAge = jsonObject.getJSONObject("pointsToHeartAge").getJSONObject("men").getInt(String.valueOf(points));
+            }
+            // MUJERES
+        } else {
+            if (risk < 1){
+                points = -2;
+            } else if(risk > 30){
+                points = 21;
+            } else {
+                JSONObject riskToPointsWomen = jsonObject.getJSONObject("riskToPoints").getJSONObject("women");
+                Iterator keys = riskToPointsWomen.keys();
+                List<String> keysArray = Lists.newArrayList(keys);
+                boolean winner = false;
+                for (int i = 1; i < keysArray.size(); i++){
+                    if (risk < Double.valueOf(keysArray.get(i)) && !winner){
+                        points = riskToPointsWomen.getInt(keysArray.get(i-1));
+                        winner = true;
+                    }
+                }
+            }
+            if (points < 1){
+                heartAge = 30;
+            } else if (points >= 15){
+                heartAge = 80;
+            } else {
+                heartAge = jsonObject.getJSONObject("pointsToHeartAge").getJSONObject("women").getInt(String.valueOf(points));
+            }
+        }
+
+        return heartAge;
+    }
+
 }

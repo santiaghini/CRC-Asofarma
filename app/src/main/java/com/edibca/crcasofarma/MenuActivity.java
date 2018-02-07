@@ -2,6 +2,7 @@ package com.edibca.crcasofarma;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.constraint.ConstraintLayout;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -11,6 +12,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
@@ -139,11 +141,14 @@ public class MenuActivity extends AppCompatActivity {
                 });
                 */
 
-                ImageView imageView = (ImageView) view.findViewById(R.id.list_image);
-                imageView.setColorFilter(null);
+                ImageView filter = (ImageView) view.findViewById(R.id.list_filter);
+                filter.setVisibility(View.VISIBLE);
+
+                SharedPreferences.Editor editor = getSharedPreferences("CRC", MODE_PRIVATE).edit();
+                editor.putInt("position", position);
+                editor.apply();
 
                 Intent intent = new Intent(MenuActivity.this, FieldsActivity.class);
-                intent.putExtra( "position", position );
                 startActivity(intent);
             }
         });
@@ -183,10 +188,12 @@ public class MenuActivity extends AppCompatActivity {
             ImageView imageView = (ImageView) convertView.findViewById(R.id.list_image);
             int id = getResources().getIdentifier(data.get(position).get("image"), "drawable", getPackageName());
             imageView.setImageResource(id);
-            imageView.setColorFilter(ContextCompat.getColor(context, R.color.filtro_menu), android.graphics.PorterDuff.Mode.MULTIPLY);
+
+            ImageView filter = (ImageView) convertView.findViewById(R.id.list_filter);
+            filter.setVisibility(View.INVISIBLE);
 
             TextView textView = (TextView) convertView.findViewById(R.id.cell_text);
-            textView.setTextColor(getResources().getColor(R.color.white));
+            //textView.setTextColor(getResources().getColor(R.color.white));
 
             Log.d("text", data.get(position).get("text"));
             textView.setText(data.get(position).get("text"));

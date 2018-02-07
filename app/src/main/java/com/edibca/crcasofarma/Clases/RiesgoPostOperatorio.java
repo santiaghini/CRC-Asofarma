@@ -67,7 +67,7 @@ public class RiesgoPostOperatorio {
 
     public double[] calcularRiesgo() {
         int iPuntaje = 0;
-        double[] dResultado = new double[3];
+        double[] dResultado = new double[4];
 
         if (this.bEdad70) iPuntaje += 5;
         if (this.bIAM6M) iPuntaje += 10;
@@ -96,6 +96,8 @@ public class RiesgoPostOperatorio {
             dResultado[1] = 22;
             dResultado[2] = 56;
         }
+
+        dResultado[3] = iPuntaje;
 
         return dResultado;
     }

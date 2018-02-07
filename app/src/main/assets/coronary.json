@@ -25,7 +25,7 @@
          "placeholder":"mg\/dL"
       },
       {
-         "name":"¿El paciente fuma?",
+         "name":"¿Fuma actualmente?",
          "type":"segmentedControl",
          "options":[
             "No",
@@ -38,7 +38,7 @@
          "placeholder":"mmHg"
       },
       {
-         "name":"Tratamiento para la hipertensi\u00f3n arterial",
+         "name":"¿Toma tratamiento para la hipertensión?",
          "type":"segmentedControl",
          "options":[
             "No",
