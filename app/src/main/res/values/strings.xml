@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">CRC Asofarma</string>
+    <string name="app_name">Calculadora Riesgo</string>
     <string name="password">rovartalnf</string>
 
     <string name="clave">Clave de acceso</string>
@@ -21,24 +21,32 @@
     <string name="metabolic_result_title">¿El paciente padece síndrome metabólico?</string>
     <string name="imc_result_title">Riesgo según edad y sexo</string>
 
-    <string name="coronary_ref_0">3. Expert Panel on Detection, Evaluation, and Treatment of High Blood Cholesterol in Adults. (2001). Executive Summary of the Third Report of the National Cholesterol Education Program (NCEP) Expert Panel on Detection, Evaluation, and Treatment of High Blood Cholesterol in Adults (Adult Treatment Panel III).</string>
-    <string name="coronary_ref_1"> JAMA, 285</string>
+    <string name="framingham_ref_0">1. Framingham Heart Study. (2015).</string>
+    <string name="framingham_ref_1"> Cardiovascular Disease (10-year risk).</string>
+    <string name="framingham_ref_2"> National Heart, Lung, and Blood Institute and Boston University. Recuperado de: https://www.framinghamheartstudy.org/risk-functions/cardiovascular-disease/10-year-risk.php</string>
+
+    <string name="coronary_ref_0">2. Expert Panel on Detection, Evaluation, and Treatment of High Blood Cholesterol in Adults. (2001). Executive Summary of the Third Report of the National Cholesterol Education Program (NCEP) Expert Panel on Detection, Evaluation, and Treatment of High Blood Cholesterol in Adults (Adult Treatment Panel III).</string>
+    <string name="coronary_ref_1"> Jama, 285</string>
     <string name="coronary_ref_2">(19), 2486-2497.</string>
 
-    <string name="metabolic_ref_0">4. Alberti, K.G., Eckel, R.H., Grundy, S.M., Zimmet, P.Z., Cleeman, J.I., Donato, K.A., ... Smith, Jr., S.C. (2009). Harmonizing the Metabolic Syndrome: A Joint Interim Statement of the International Diabetes Federation Task Force on Epidemiology and Prevention; National Heart, Lung, and Blood Institute; American Heart Association; World Heart Federation; International Atherosclerosis Society; and International Association for the Study of Obesity.</string>
+    <string name="metabolic_ref_0">3. Alberti, K.G., Eckel, R.H., Grundy, S.M., Zimmet, P.Z., Cleeman, J.I., Donato, K.A., &amp; Smith, Jr., S.C.(2009). Harmonizing the metabolic syndrome: a joint interim statement of the international diabetes federation task force on epidemiology and prevention; national heart, lung, and blood institute; American heart association; world heart federation; international atherosclerosis society; and international association for the study of obesity.</string>
     <string name="metabolic_ref_1"> Circulation, 120</string>
     <string name="metabolic_ref_2">, 1640-1645.</string>
 
-    <string name="mass_ref_0">"5. Jensen MD, Ryan DH, Apovian CM, Ard JD, Comuzzie AG, Donato KA, Hu FB, Hubbard VS, Jakicic JM, Kushner RF, Loria C, Millen BE, Nonas CA, Pi-Sunyer FX, Stevens J, Stevens VJ, Wadden TA, Wolfe BM, Yanovski SZ. 2013 AHA/ACC/TOS guideline for the management of overweight and obesity in adults: a report of the American College of Cardiology/American Heart Association Task Force on Practice Guidelines and The Obesity Society.</string>
-    <string name="mass_ref_1"> Circulation. 2013</string>
-    <string name="mass_ref_2">; 00:000–000.\n\n6. Pi-Sunyer, F.X., Becker, D.M., Bouchard, C., Carleton, R.A., Colditz, G.A., Dietz, W.H.,... Wilson, G.T. (1998). Clinical Guidelines on the Identification, Evaluation, and Treatment of Overweight and Obesity in Adults. National Heart, Lung, and Blood Institute in cooperation with The National Institute of\nDiabetes and Digestive and Kidney Diseases. Recuperado de: https://www.nhlbi.nih.gov/files/docs/resources/heart/prctgd_c.pdf</string>
+    <string name="mass_ref_0">"4. Jensen, M.D., Ryan, D.H., Apovian, C.M., Ard, J.D., Comuzzie, A.G., Donato K.A., ... &amp; Loria, C.M. (2014). 2013 AHA/ACC/TOS guideline for the management of overweight and obesity in adults: a report of the American College of Cardiology/American Heart Association Task Force on Practice Guidelines and The Obesity Society.</string>
+    <string name="mass_ref_1"> Journal of the American college of cardiology, 63</string>
+    <string name="mass_ref_2">(25 Part B), 2985-3023\n\n5. NHLBI Obesity Education Initiative, National Heart, Lung, Blood Institute, North American Association for the Study of Obesity, Expert Panel on the Identification, Evaluation and Treatment of Overweight &amp; Obesity in Adults (US). (2000).</string>
+    <string name="mass_ref_3"> The practical guide: identification, evaluation, and treatment of overweight and obesity in adults.</string>
+    <string name="mass_ref_4"> National Institues of Health. 1-94</string>
 
-    <string name="postoperatory_ref_0">7. Halub, M.E., Sidwell, R.A. (2015). Cardiac Risk Stratification and Protection.</string>
-    <string name="postoperatory_ref_0.1"> Surg Clin N Am</string>
+    <string name="postoperatory_ref_0">6. Halub, M.E., &amp; Sidwell, R.A. (2015). Cardiac risk stratification and protection.</string>
+    <string name="postoperatory_ref_0.1"> Surgical Clinics</string>
     <string name="postoperatory_ref_0.2">, 95, 217–235.</string>
     <string name="postoperatory_ref_1"> Rev Arg Cardiol</string>
     <string name="postoperatory_ref_2">, 73(5), 381-396.</string>
-    <string name="postoperatory_ref_3">8. Kraus, J., Falconi, M., Barisani, J.L., Levin, R., Sampó, E., Vidal, L., ... Trainini, J. (2005). Consenso de evaluación del riesgo cardiovascular en cirugía no cardíaca. </string>
+    <string name="postoperatory_ref_3">7. Kraus, J., Falconi, M., Barisani, J.L., Levin, R., Sampó, E., Vidal, L., Amuchástegui, L. M., &amp; Mele E. (2005). Consenso de evaluación del riesgo cardiovascular en cirugía no cardíaca. </string>
+    <string name="postoperatory_ref_4"> Revista argentina de cardiología</string>
+    <string name="postoperatory_ref_5">, 73 (5), 381-396</string>
 
     <string name="metabolic_info">El Síndrome Metabólico incrementa 2 veces el riesgo de enfermedad cardiovascular durante los próximos 5 a 10 años y aumenta 5 veces el riesgo de diabetes mellitus tipo 2.</string>
     <string name="postoperatory_info">El puntaje de riesgo de Goldman establece la probabilidad de  complicaciones cardiacas (%) en pacientes llevados a cirugía no cardiaca, en relación a la presencia o no de factores de riesgo específicos.\nClasifica a los pacientes en cuatro clases (I a IV). El incremento en la clase del paciente se relaciona con el incremento en la probabilidad de complicaciones (complicaciones cardíacas, complicaciones graves y muerte cardiaca).\nClase I (riesgo bajo): puntaje de 0 a 5; clase II (riesgo moderado): puntaje 6-12; clase III (riesgo alto): puntaje 13-25; clase IV (riesgo muy alto): puntaje ≥26).</string>

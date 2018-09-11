@@ -158,6 +158,7 @@ public class ResultsActivity extends AppCompatActivity {
         }
 
         resultLabelDown.setText(label);
+        referencesTextView.setText(Html.fromHtml(getString(R.string.framingham_ref_0).replace("\n","<br />") + "<i>" + " " + getString(R.string.framingham_ref_1) + "</i>" + " " + getString(R.string.framingham_ref_2)));
     }
     public void rec(){
         resultLabelCenter.setVisibility(View.VISIBLE);
@@ -174,7 +175,7 @@ public class ResultsActivity extends AppCompatActivity {
         boolean result = getIntent().getBooleanExtra("result",true);
         String resultText = ((result) ? "SÍ" : "NO");
         resultLabelCenter.setText(resultText);
-        infoTextView.setText(Html.fromHtml("<p>" + getString(R.string.metabolic_info) + "<sup>4</sup>" + "</p>"));
+        infoTextView.setText(Html.fromHtml("<p>" + getString(R.string.metabolic_info) + "<sup>3</sup>" + "</p>"));
         referencesTextView.setText(Html.fromHtml(getString(R.string.metabolic_ref_0).replace("\n","<br />") + " " + "<i>" + getString(R.string.metabolic_ref_1).replace("\n","<br />") + "</i>" + getString(R.string.metabolic_ref_2).replace("\n","<br />")));
 
     }
@@ -209,7 +210,7 @@ public class ResultsActivity extends AppCompatActivity {
         }
 
         resultLabelDown.setText("Este es un paciente con " + tag);
-        referencesTextView.setText(Html.fromHtml(getString(R.string.mass_ref_0).replace("\n","<br />") + " " +"<i>" + getString(R.string.mass_ref_1) + "</i>" + getString(R.string.mass_ref_2).replace("\n","<br />")));
+        referencesTextView.setText(Html.fromHtml(getString(R.string.mass_ref_0).replace("\n","<br />") + " " +"<i>" + getString(R.string.mass_ref_1) + "</i>" + " " + getString(R.string.mass_ref_2).replace("\n","<br />") + " " +"<i>" + getString(R.string.mass_ref_3) + "</i>" + " " + getString(R.string.mass_ref_4)));
 
     }
     public void rcp(){
@@ -219,7 +220,7 @@ public class ResultsActivity extends AppCompatActivity {
         wheelTextRight.setText("Muerte");
 
         infoContainer.setVisibility(View.VISIBLE);
-        infoTextView.setText(Html.fromHtml("<p>" + getString(R.string.postoperatory_info) + "<sup>7, 8</sup>" + "</p>" ));
+        infoTextView.setText(Html.fromHtml("<p>" + getString(R.string.postoperatory_info) + "<sup>6, 7</sup>" + "</p>" ));
 
         double[] results = getIntent().getDoubleArrayExtra("result");
         setWheels(results);
@@ -239,7 +240,7 @@ public class ResultsActivity extends AppCompatActivity {
         }
 
         resultTitleView.setText("Paciente " + tag);
-        referencesTextView.setText(Html.fromHtml(getString(R.string.postoperatory_ref_0) + "<i> " + getString(R.string.postoperatory_ref_0_1) + "</i>" + getString(R.string.postoperatory_ref_0_2) + "<br /><br />" + getString(R.string.postoperatory_ref_3) + " " + "<i>" + getString(R.string.postoperatory_ref_1).replace("\n","<br />") + "</i>" + getString(R.string.postoperatory_ref_2).replace("\n","<br />")));
+        referencesTextView.setText(Html.fromHtml(getString(R.string.postoperatory_ref_0) + "<i> " + getString(R.string.postoperatory_ref_0_1) + "</i>" + getString(R.string.postoperatory_ref_0_2) + "<br /><br />" + getString(R.string.postoperatory_ref_3) + " " + "<i>" + getString(R.string.postoperatory_ref_1).replace("\n","<br />") + "</i>" + getString(R.string.postoperatory_ref_2).replace("\n","<br />") + " " + "<i>" + getString(R.string.postoperatory_ref_4) + "</i>"+ getString(R.string.postoperatory_ref_5)));
     }
 
     public void setWheels(double[] results){
